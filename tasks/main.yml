@@ -1,0 +1,21 @@
+- name: install the latest version of Apache
+  yum:
+    name: http://rpms.remirepo.net/enterprise/remi-release-7.rpm
+    state: latest 
+    
+- name: install the latest version of Apache
+  yum:
+    name: yum-utils
+    state: latest 
+    
+- name: enable remi-php72
+  shell: yum-config-manager --enable remi-php72
+  
+- name: install httpd and dependencies
+  yum:
+    name: httpd,php,php-mysqlnd,libsemanage-python,mod_ssl,php-gd,php-ldap,php-odbc,php-pear,php-xml,php-xmlrpc,php-mbstring,php-snmp,php-soap,curl,php-mcrypt,php-bcmath,php,php-mcrypt,php-cli,php-gd,php-curl,php-mysql,php-ldap,php-zip,php-fileinfo
+    state: latest
+
+- service:
+    name: httpd
+    state: restarted  
